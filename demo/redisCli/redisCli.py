@@ -8,6 +8,7 @@ from dataclasses import dataclass, field
 import redis
 import time
 from redis.sentinel import Sentinel
+import uuid
 
 cli = redis.Redis(host='localhost', port=6379, db=0)
 cli.set("admin", 'IanLeto')
@@ -75,6 +76,12 @@ def item_watch():
         except redis.exceptions.WatchError:
             pass
     return False
+
+
+# redis 锁
+def acquire(key: str, time_out: int) -> bool:
+    redis_conn = new_redis_client()
+    redis_conn.setex(key, time=time_out)
 
 
 if __name__ == '__main__':

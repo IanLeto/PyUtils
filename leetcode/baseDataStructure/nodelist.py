@@ -16,6 +16,7 @@ class ListNode:
         self.val = data
 
     def get_data(self):
+
         return self.val
 
     def get_next(self):
@@ -23,3 +24,5 @@ class ListNode:
 
     def set_next(self, next_node):
         self.next = next_node
+
+
