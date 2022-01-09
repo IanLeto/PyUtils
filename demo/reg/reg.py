@@ -11,9 +11,14 @@ labels = [
 ]
 
 
+# 不匹配
+def not_re():
+    print([i for i in labels if not re.search(r"\.*_template.json", i) and not re.search("region_.*", i)])
+
+
 # 前缀
 def prefix_re():
-    print([i for i in labels if re.search(r"\.*.json", i)])
+    print([i for i in labels if re.search(r"\.*_template.json", i)])
 
 
 # 截取前缀
@@ -26,3 +31,5 @@ def split_prefix(value: str, word: str) -> str:
 
 if __name__ == '__main__':
     print(split_prefix('project_id_template.json', '_template'))
+    prefix_re()
+    not_re()
